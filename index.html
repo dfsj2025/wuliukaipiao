@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval' 'unsafe-inline'; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; img-src 'self' data:;">
+    <title>物流托运单管理系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        #content {
+            padding: 10px;
+            min-width: 1200px;
+            overflow-x: auto;
+            flex: 1;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            height: 100vh;
+            padding: 10px;
+            transition: width 0.3s;
+            position: relative;
+            flex: 0 0 250px;
+        }
+        .container-fluid {
+            display: flex;
+            min-width: 1450px;
+        }
+        .row {
+            flex: 1;
+            display: flex;
+            min-width: 0;
+        }
+        .col-md-10 {
+            flex: 1;
+            min-width: 0;
+        }
+        .col-md-2 {
+            flex: 0 0 250px;
+        }
+        .sidebar.collapsed {
+            width: 50px;
+            overflow: hidden;
+        }
+        .sidebar.collapsed .nav-text {
+            display: none;
+        }
+        .nav-item {
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+        .btn-link {
+            padding: 5px 10px;
+            text-align: left;
+            width: 100%;
+        }
+        .toggle-sidebar {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar" id="sidebar">
+                <span class="toggle-sidebar" onclick="toggleSidebar()">≡</span>
+                <h4 class="text-center mb-4 nav-text">物流开票</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" onclick="navigate('customer')">
+                            <span class="nav-text">客户管理</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" onclick="navigate('invoice')">
+                            <span class="nav-text">开票管理</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" onclick="navigate('invoice-query')">
+                            <span class="nav-text">开票查询</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" onclick="navigate('dictionary')">
+                            <span class="nav-text">录入字典</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10" id="content">
+                <h2 id="page-title">欢迎使用物流开票系统</h2>
+                <div id="page-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+</html>
